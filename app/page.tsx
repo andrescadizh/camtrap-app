@@ -67,19 +67,7 @@ export default function Home() {
     setLogged(true);
   };
 
-  const createUser = async () => {
-    const newUser = prompt("Nuevo usuario:");
-    const newPass = prompt("Nueva contraseña:");
-
-    if (!newUser || !newPass) return;
-
-    await supabase.from("app_users").insert({
-      username: newUser,
-      password: newPass,
-    });
-
-    alert("Usuario creado");
-  };
+  
 
   // ======================
   // NAVIGATION
@@ -168,9 +156,7 @@ export default function Home() {
 
       <br /><br />
 
-      <button onClick={createUser}>
-        Crear usuario
-      </button>
+      
     </div>
   );
 }
