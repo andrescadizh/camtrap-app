@@ -67,8 +67,6 @@ export default function Home() {
     setLogged(true);
   };
 
-  
-
   // ======================
   // NAVIGATION
   // ======================
@@ -102,10 +100,10 @@ export default function Home() {
     const { error } = await supabase
       .from("classifications")
       .insert({
-        photo_id: photo.id,
+        nombre_foto: photo.storage_path, // 👈 CLAVE
         has_animal: hasAnimal,
         species: species || null,
-        user_name: user, // 👈 usuario logueado
+        user_name: user,
       });
 
     if (error) {
@@ -117,51 +115,47 @@ export default function Home() {
   };
 
   // ======================
-  // UI LOGIN
+  // LOGIN UI
   // ======================
   if (!logged) {
-  return (
-    <div style={{ textAlign: "center", marginTop: "80px" }}>
+    return (
+      <div style={{ textAlign: "center", marginTop: "80px" }}>
 
-      {/* IMAGEN LOGIN */}
-      <img
-        src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRknEEFICRLm1yhav9JEI2hOIo75gHteMRDLA&s"
-        style={{
-          width: "250px",
-          borderRadius: "15px",
-          marginBottom: "20px"
-        }}
-      />
+        <img
+          src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRknEEFICRLm1yhav9JEI2hOIo75gHteMRDLA&s"
+          style={{
+            width: "250px",
+            borderRadius: "15px",
+            marginBottom: "20px"
+          }}
+        />
 
-      <h2>Ingreso al sistema</h2>
+        <h2>Ingreso al sistema</h2>
 
-      <input
-        placeholder="Usuario"
-        onChange={(e) => setUser(e.target.value)}
-        style={{ padding: "8px", margin: "5px" }}
-      />
-      <br />
+        <input
+          placeholder="Usuario"
+          onChange={(e) => setUser(e.target.value)}
+          style={{ padding: "8px", margin: "5px" }}
+        />
+        <br />
 
-      <input
-        placeholder="Clave"
-        type="password"
-        onChange={(e) => setPass(e.target.value)}
-        style={{ padding: "8px", margin: "5px" }}
-      />
-      <br />
+        <input
+          placeholder="Clave"
+          type="password"
+          onChange={(e) => setPass(e.target.value)}
+          style={{ padding: "8px", margin: "5px" }}
+        />
+        <br />
 
-      <button onClick={login} style={{ marginTop: "10px" }}>
-        Ingresar
-      </button>
+        <button onClick={login} style={{ marginTop: "10px" }}>
+          Ingresar
+        </button>
+      </div>
+    );
+  }
 
-      <br /><br />
-
-      
-    </div>
-  );
-}
   // ======================
-  // EMPTY STATE
+  // EMPTY
   // ======================
   if (photos.length === 0) {
     return <p>No hay fotos cargadas</p>;
