@@ -12,7 +12,7 @@ export async function GET() {
     // 1. Listar archivos del bucket
     const { data: files, error: listError } = await supabase.storage
       .from("prueba")
-      .list("", { limit: 100 });
+      .list("", { limit: 1000 });
 
     if (listError) {
       return NextResponse.json(

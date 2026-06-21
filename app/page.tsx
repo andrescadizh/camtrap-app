@@ -130,7 +130,7 @@ if (updateError) {
   async function showInfo() {
     const photo = photos[currentIndex];
     const parts = photo.storage_path.split("_");
-    const code = parts.length >= 3 ? `${parts[1]}_${parts[2]}` : "";
+    const code = parts.length >= 3 ? `${parts[0]}_${parts[1]}` : "";
 
     const { data: img } = supabase.storage
       .from("info_images")
